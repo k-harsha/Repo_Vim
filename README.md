@@ -1,10 +1,6 @@
-# Repo_Vim
-This repository is about the vim settings
-```verilog
-module a;
-inout a;
-assert a;
-constraint a{}; /*kskfd*/
-//sdfg
-endmodule
-```
+# Changing the .vim,.vimrc default file paths in linux terminal(bash)
+-  In ~/.bashrc file, insert below lines
+
+> export VIMINIT='source $MYVIMRC'  # make sure you have empty ~/.vimrc file.
+>
+>  export MYVIMRC='<your_folder_path>/VIM/.vim/.vimrc' 
