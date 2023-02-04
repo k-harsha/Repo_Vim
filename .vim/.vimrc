@@ -16,6 +16,19 @@ syntax on
 " Add numbers to each line on the left-hand side.
 set number
 
+" Use a line cursor within insert mode and a block cursor everywhere else.
+"
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[1 q"
+
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
@@ -108,3 +121,22 @@ augroup END
 " Status bar code goes here.
 
 " }}}
+
+
+
+
+" TODO - Harsha - to dynamically pick the .vim folder to runtimepath , Issue :
+" Excuting sometimes only
+"------------------------------------------------------------------------------------------
+"let &runtimepath=&runtimepath . ',' . substitute(expand("%:p"), '.vimrc', '', 'g')
+"let &rtp=substitute(expand("%:p"), '.vimrc', '', 'g') . ',' . &rtp
+"let this_vimrc_path=expand("%:p")
+"echo $this_vimrc_path
+"let dot_vim_path=substitute(this_vimrc_path,'.vimrc','','g')
+"echo $dot_vim_path
+let &rtp = $VIMFOLDER . ',' . &rtp
+
+"Load the colorscheme if exists
+if (filereadable(expand('$VIMFOLDER').'/colors/monokoi.vim') )
+    colorscheme monokoi
+endif
